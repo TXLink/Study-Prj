@@ -1,0 +1,182 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/uigrid/ui-grid.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.2.1.1.js"></script>
+    <script src="~/Scripts/angular1.5.5.js"></script>
+    <script src="~/Content/uigrid/ui-grid.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    @*   <script src="~/JS/App/exportExeclTest.js"></script>*@
+
+    <!-- ui-grid export 导出-->
+    <!--<script src="../js/lib/pdfmake/pdfmake.min.js"></script>
+    <script src="../js/lib/pdfmake/vfs_fonts.js"></script>
+    <script src="../js/lib/ui-grid/csv.js"></script>-->
+
+    <style type="text/css">
+        .ui-grid-pager-control input {
+            padding: 0px;
+            height: 23px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var app = angular.module("myApp", ['ui.grid', 'ui.grid.selection', 'ui.grid.edit',
+            'ui.grid.exporter', 'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.autoResize']);
+        app.controller("MyCtrl", function ($http, $scope, i18nService) {
+
+            //$scope.downLoad = function () {
+            //    $http.post("/Home/TestData")
+            //    .success(function (data) {
+
+            //    }).error(function () {
+            //        alert("POST请求失败，请检查网络！");
+            //    });
+            //}
+
+            //$http.post("/Home/TestData")
+            //.success(function (data) {
+
+
+            //}).error(function () {
+            //    alert("POST请求失败，请检查网络！");
+            //});
+
+            //$http.get("/Home/TestData").success(function (d) {
+
+
+            var data = [
+              {
+                  "Name": "测试姓名0",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字1"
+              },
+              {
+                  "Name": "测试姓名1",
+                  "SerialNumber": "3233112321222333212324578987",
+                  "Text": "测试文字测试文字2"
+              },
+              {
+                  "Name": "测试姓名2",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字3"
+              },
+              {
+                  "Name": "测试姓名3",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字4"
+              },
+              {
+                  "Name": "测试姓名4",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字5"
+              },
+              {
+                  "Name": "测试姓名5",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字6"
+              },
+              {
+                  "Name": "测试姓名6",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名7",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名8",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名9",
+                  "SerialNumber": "33233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名10",
+                  "SerialNumber": "3233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              },
+              {
+                  "Name": "测试姓名",
+                  "SerialNumber": "1233112321222333212324578987",
+                  "Text": "测试文字测试文字"
+              }
+            ]
+            $scope.gridOptions = {
+                data: data
+            }
+
+
+        });
+
+    
+    </script>
+</head>
+<body ng-controller="MyCtrl">
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <div style="height:40px;text-align:right;">
+            <a  class="btn btn-primary " href="/Home/DownLoadExcel"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;DownLoad</a>
+        </div>
+        <div ui-grid="gridOptions" style=" text-align: center;" ui-grid-edit ui-grid-pagination
+             ui-grid-selection ui-grid-exporter ui-grid-resize-columns ui-grid-auto-resize>
+        </div>
+    </div>
+</body>
+</html>

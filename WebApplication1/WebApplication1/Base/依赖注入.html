@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+
+        var app = angular.module("mainApp", []);
+
+  
+        //app.config(function ($provide) {
+
+        //    $provide.provider("MathService", function () {
+
+        //        this.$get = function () {
+
+        //            var factory = {};
+
+        //            factory.multiply = function (a, b) {
+        //                return a * b;
+        //            }
+        //            return factory;
+        //        };
+
+        //    });
+
+        //});
+
+        ////创建Value对象 “defaultInput” 并且赋初值5
+        app.value("defaultInput", 5);
+
+        //创建 factory "MathService" 用于两数的乘积
+        app.factory('MathService', function () {
+            var factory = {};
+            factory.multiply = function (a, b)
+            {
+                return a * b;
+            }
+            return factory;
+        })
+
+
+        
+        app.service("CalcService", function (MathService) {
+            this.square = function (a) {
+                return MathService.multiply(a,a);
+            }
+
+        })
+    
+    
+
+        app.controller("CalcController", function ($scope, CalcService, defaultInput) {
+
+            $scope.number = defaultInput;
+            $scope.result = CalcService.square($scope.number);
+
+            $scope.square = function () {
+                $scope.result = CalcService.square($scope.number);
+            }
+        });
+       
+
+      
+    </script>
+</head>
+<body>
+    <div ng-app="mainApp" ng-controller="CalcController">
+        <p>输入一个数字: <input type="number" ng-model="number" /></p>
+        <button ng-click="square()">X<sup>2</sup></button>
+        <p>结果: {{result}}</p>
+    </div>
+</body>
+</html>

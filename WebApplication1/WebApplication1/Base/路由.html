@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>AngularJS 路由实例 </title>
+	<meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script src="../js/angular-route.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myApp", ["ngRoute"]);
+        app.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+                .when("/", { template: "这是首页页面" })
+                .when("/computers", { template: "电脑页面" })
+                //.when("/priter", { template: "这是打印机的页面" })
+                .when("/priter", {templateUrl:"priter.html"})
+                .otherwise({redirectTo:"/"});
+
+        }]);
+    </script>
+</head>
+<body ng-app="myApp">
+    <ul>
+        <li><a href="#/">首页</a></li>
+        <li><a href="#/computers">电脑</a></li>
+        <li><a href="#/priter">打印机</a></li>
+        <li><a href="#/">其他</a></li>
+    </ul>
+    <hr />
+    <div ng-view></div>
+</body>
+</html>

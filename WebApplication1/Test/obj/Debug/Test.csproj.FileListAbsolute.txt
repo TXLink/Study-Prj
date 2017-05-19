@@ -1,0 +1,6 @@
+E:\Study Prj\WebApplication1\Test\bin\Debug\Test.exe.config
+E:\Study Prj\WebApplication1\Test\bin\Debug\Test.exe
+E:\Study Prj\WebApplication1\Test\bin\Debug\Test.pdb
+E:\Study Prj\WebApplication1\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+E:\Study Prj\WebApplication1\Test\obj\Debug\Test.exe
+E:\Study Prj\WebApplication1\Test\obj\Debug\Test.pdb

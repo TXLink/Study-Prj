@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $filter) {
+       
+            $scope.left = function () {
+         
+                return 100 - $scope.txt.length;
+            
+                
+            };
+            $scope.clear = function () {
+                $scope.txt = "";
+        
+            };
+            $scope.save = function () {
+                alert("save!");
+            }
+        });
+
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1>angular应用</h1>
+    <textarea cols="20" rows="10" ng-model="txt" ></textarea>
+    <br />
+    <label>还可以输入<span ng-bind="left()"></span>个字符</label>
+    <br />
+    <button ng-click="save()">保存</button>
+    <button ng-click="clear()">清除</button>
+</body>
+</html>

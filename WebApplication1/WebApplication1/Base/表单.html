@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl1", function ($scope) {
+
+            $scope.master = { firstName: "明", lastName: "张" };
+            $scope.reset = function () {
+                $scope.user = angular.copy($scope.master);
+            }
+            $scope.reset();
+        })
+    </script>
+
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl1">
+        <form novalidate>
+            名： <input type="text" ng-model="user.firstName" /><br />
+            姓：<input type="text" ng-model="user.lastName" /><br />
+            <button ng-click="reset()">重置</button>
+        </form>
+        <p>form-->{{user}}</p>
+        <p>master-->{{master}}</p>
+    </div>
+</body>
+</html>

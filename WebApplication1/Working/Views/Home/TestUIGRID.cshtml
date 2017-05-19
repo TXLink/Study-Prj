@@ -1,0 +1,121 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script src="~/Scripts/jquery.min.2.1.1.js"></script>
+    <script src="~/Scripts/angular1.5.5.js"></script>
+    <script src="~/Content/uigrid/ui-grid.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/Content/js/angular-touch1.2.6.js"></script>
+    <script src="~/Content/js/angular-animate.js"></script>
+    <script src="~/Content/js/ui-grid-unstable.js"></script>
+    <link href="~/Content/js/ui-grid-unstable.css" rel="stylesheet" />
+    @*<script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>*@
+
+
+
+    <style type="text/css">
+         
+        .ui-grid .ui-grid-render-container-body .ui-grid-viewport {
+            overflow-x: auto !important;
+             /*or use: overflow-x: hide!important;*/ 
+        }
+    </style>
+
+    <script type="text/javascript">
+        var app = angular.module("myApp", ['ngTouch', 'ui.grid', 'ui.grid.pagination']);
+        app.controller('MyCtrl', [
+     '$scope', '$http', 'uiGridConstants', function ($scope, $http, uiGridConstants, i18nService) {
+
+         var paginationOptions = {
+             pageNumber: 1,
+             pageSize: 25,
+             sort: null
+         };
+         $scope.gridOptions = {
+             paginationPageSizes: [25, 50, 75],
+             paginationPageSize: 25,
+             useExternalPagination: true,
+             useExternalSorting: true,
+             enableSorting: true,
+             //enableHorizontalScrollbar: 1, //grid水平滚动条是否显示, 0-不显示  1-显示
+             //enableVerticalScrollbar: 1, //grid垂直滚动条是否显示, 0-不显示  1-显示
+             columnDefs: [
+               { name: 'ID',width:200 },
+               { name: 'Name',width:600 },
+               { name: 'SerialNumber', width: 600 },
+               { name: 'Text', enableSorting: false, width: 600 }
+             ],
+             onRegisterApi: function (gridApi) {
+                 $scope.gridApi = gridApi;
+                 $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                     if (sortColumns.length == 0) {
+                         paginationOptions.sort = null;
+                     } else {
+                         paginationOptions.sort = sortColumns[0].sort.direction;
+                     }
+                     getPage();
+                 });
+                 gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                     paginationOptions.pageNumber = newPage;
+                     paginationOptions.pageSize = pageSize;
+                     getPage();
+                 });
+             }
+         };
+         var getPage = function () {
+             var url;
+             switch (paginationOptions.sort) {
+                 case uiGridConstants.ASC:
+                     url = '/Home/TestReturnDataAsc';
+                     break;
+                 case uiGridConstants.DESC:
+                     url = '/Home/TestReturnDataDesc';
+                     break;
+                 default:
+                     url = '/Home/TestReturnData';
+                     break;
+             }
+
+             $http.get(url)
+             .success(function (data) {
+                 $scope.gridOptions.totalItems = 100;
+                 var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
+                 $scope.gridOptions.data = data.slice(firstRow, firstRow + paginationOptions.pageSize);
+             });
+         };
+
+         getPage();
+     }
+        ]);
+
+
+    </script>
+</head>
+<body ng-controller="MyCtrl">
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <div style="height:40px;text-align:right;">
+            <a class="btn btn-link " href="/Home/DownLoadExcel"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;DownLoad</a>
+            <a class="btn btn-link " href="/Home/DownLoadExcelByDataTable"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;DownLoadByDtCn</a>
+            <a class="btn btn-link " href="/Home/DownLoadExcelByDic"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;DownLoadByDtDic</a>
+        </div>
+        <div ui-grid="gridOptions" style=" text-align: center;background-color:#f0f0ee;" ui-grid-save-state ui-grid-selection ui-grid-cellnav ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-pagination ui-grid-empty-base-layer>
+        </div>
+    </div>
+</body>
+</html>

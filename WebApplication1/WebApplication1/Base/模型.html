@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+
+        var app = angular.module("myApp", []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.name = "xuyinglin";
+        })
+        
+
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+     名字： <input ng-model="name" />
+    <h1>你输入的是:{{name}}</h1>
+</body>
+</html>

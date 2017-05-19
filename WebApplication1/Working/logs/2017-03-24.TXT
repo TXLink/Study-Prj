@@ -1,0 +1,4 @@
+2017-03-24 15:32:54,708 ThreadID:[8] Log Level:INFO  Class:Working.Controllers.HomeController Desp:消息Msg
+2017-03-24 15:32:54,721 ThreadID:[8] Log Level:WARN  Class:Working.Controllers.HomeController Desp:警告W
+2017-03-24 15:32:54,721 ThreadID:[8] Log Level:ERROR Class:Working.Controllers.HomeController Desp:异常E
+2017-03-24 15:32:54,721 ThreadID:[8] Log Level:FATAL Class:Working.Controllers.HomeController Desp:错误W

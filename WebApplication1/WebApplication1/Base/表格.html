@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+
+
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl1", function ($scope, $http) {
+
+            $http.get("Json.ashx").success(function (data) {
+                $scope.names = data;
+            });
+
+        });
+
+
+    </script>
+    <style>
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+            table tr:nth-child(odd) {
+                background-color: #f1f1f1;
+            }
+
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+    </style>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl1">
+
+        <table>
+            <tr ng-repeat="x in names|orderBy:'Name'">
+                <td ng-if="$odd" style="background-color:red;">{{$index+1}}</td>
+                <td ng-if="$even" style="background-color:yellow;">{{$index+1}}</td>
+                <td>{{x.Name|uppercase}}</td>
+                <td>{{x.Url|uppercase}}</td>
+                <td ng-if="$odd" style="background-color:red">{{x.Country}}</td>
+                <td ng-if="$even" style="background-color:yellow;">{{x.Country}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

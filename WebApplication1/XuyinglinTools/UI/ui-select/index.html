@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <script src="select.js"></script>
+    <link href="select.css" rel="stylesheet" />
+    <script src="demo.js"></script>
+</head>
+<body ng-controller="ctrl">
+    <div style="width:50%;margin-top:50px;">
+    
+        <span>当前选中的是：name={{Classify.getList.selected.name}}&nbsp;&nbsp;id={{Classify.getList.selected.id}}</span>
+        <br />
+        <ui-select ng-model="Classify.getList.selected">
+            <ui-select-match>
+                {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in Classify.getList | filter: $select.search ">
+                <span ng-bind="item.name"></span>
+            </ui-select-choices>
+        </ui-select>
+        <br />
+        <br />
+        <span>当前选中的是：name={{Classify2.getList.selected.name}}&nbsp;&nbsp;id={{Classify2.getList.selected.id}}</span>
+        <br />
+        <ui-select ng-model="Classify2.getList.selected">
+            <ui-select-match>
+                <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="item in (Classify.getList | filter: $select.search) track by item.id">
+                <span ng-bind="item.name"></span>
+            </ui-select-choices>
+        </ui-select><br />
+   
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl1", function ($scope, $location) {
+
+            $scope.getMyUrl = $location.absUrl();
+
+        })
+
+        app.controller("myCtrl2", function ($scope, $http) {
+
+            $http.get("../demo.txt").then(function (response) {
+
+                $scope.getContent = response.data;
+            })
+        })
+
+        app.controller("myCtrl3", function ($scope, $timeout, $interval) {
+
+            $scope.myTestTxt = "初始化显示的内容！";
+            $timeout(function () {
+                $scope.myTestTxt = "这是3秒后显示的内容！";
+            }, 3000)
+            $interval(function () {
+                $scope.getDate = new Date();
+            }, 1000)
+        });
+
+        //自定义服务
+        app.service("myService", function () {
+            this.myFun = function (x) {
+                return x > 10 ? "N" + x : "0" + x;
+            }
+        })
+        //自定义服务过滤器
+        app.filter("myFormat", ['myService', function (myService) {
+            return function (x) {
+                return myService.myFun(x);
+            };
+        }])
+
+        app.controller("myCtrl4", function ($scope, myService) {
+            $scope.myTestTxt = myService.myFun(1);
+            $scope.nums = [29, 99, 1, 2, 3, 4, 5, 11, 23, 122];
+        })
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl1">
+
+        返回我的地址：{{getMyUrl}}
+
+    </div>
+    <br />
+    <div ng-controller="myCtrl2">
+
+        {{getContent}}
+
+    </div>
+    <br />
+    <div ng-controller="myCtrl3">
+
+        {{myTestTxt}} &nbsp;当前时间：{{getDate|date:'yyyy-MM-dd HH:mm:ss'}}
+
+    </div>
+    <div ng-controller="myCtrl4">
+
+        {{myTestTxt}}
+        <br />
+        <br />
+        <ul>
+            <li ng-repeat="x in nums">{{x | myFormat}}</li>
+        </ul>
+
+
+    </div>
+
+</body>
+</html>

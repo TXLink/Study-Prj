@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+
+    <script type="text/javascript">
+   
+        var app = angular.module("myApp", []).run(function ($rootScope, $timeout) {
+
+            $timeout(function () {
+                //$rootScope.myHref = "www.google.com";
+                $rootScope.imgSrc = "http://img.ivsky.com/img/tupian/pre/201104/16/anhui_huangshan_fengjing-055.jpg";
+            }, 2000)
+
+        });
+
+        app.controller("myCtrl011", function ($scope) {
+            $scope.people = [
+                { name: "Ari", city: "San Francisco" },
+                { name: "Erik", city: "Seattle" }
+            ];
+            $scope.greeting = "hhhhhello!";
+            $scope.equation = {};
+            $scope.equation.change = function(){
+                $scope.equation.output = parseInt($scope.equation.x) + 2;
+            }
+
+        });
+
+    </script>
+    <style type="text/css">
+        .odd {
+        background-color:rebeccapurple;
+        }
+        .even {
+        background-color:yellow;
+        }
+
+    </style>
+
+</head>
+<body ng-app="myApp">
+ 
+    <input type="text" ng-model="someProperty" /><br />
+    <input type="text" ng-readonly="someProperty" /><br />
+
+    <label>somProperty={{someProperty}}</label><br />
+    <input type="checkbox" ng-checked="somProperty" ng-model="someProperty" />
+    <br />
+    <label>Select Two Fish:</label>
+    <input type="checkbox" ng-model="isTwoFish" /><br />
+    <select>
+        <option>one fish</option>
+        <option ng-selected="isTwoFish">two fish</option>
+    </select><br />
+
+    <a ng-href="{{myHref}}">l m feeling lucky,when l load</a><br />
+
+    <a href="{{myHref}}">may be 404 page not found</a><br />
+    <hr />
+    <h1>WrongWay</h1>
+    <img style="width:100px;height:100px;" src="{{imgSrc}}" />
+    <h1>RightWay</h1>
+    <img style="width:100px;height:100px;" ng-src="{{imgSrc}}" />
+    <br />
+    <hr />
+    <input type="text" ng-model="person.name" />
+    <div ng-switch on="person.name">
+        <p ng-switch-default>And the winner is</p>
+        <h1 ng-switch-when="Xuyinglin">{{person.name}}</h1>
+    </div>
+    <br />
+    <div ng-if="2+2===5">
+        Won't see this DOM node, not even in the source code
+    </div>
+    <div ng-if="2+2===4">
+        Hi, I do exist
+    </div>
+    <hr />
+    <div ng-controller="myCtrl011">
+        <ul>
+            <li ng-repeat="p in people" ng-class="{even:$even,odd:$odd}">
+                {{p.name}} live in {{p.city}}
+
+            </li>
+        </ul>
+        <p ng-bind="greeting"></p>
+
+        <br />
+        <input type="text" ng-model="equation.x" ng-change="equation.change()" />
+        <p ng-cloak>{{equation.output}}</p>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+
+    <script src="../js/angular.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+
+    </script>
+</head>
+<body ng-app="myApp">
+  
+    <!--
+        ng-app：指令初始化一个AngularJS应用程序
+        ng-init: 初始化
+        ng-model:绑定
+
+         -->
+    <div ng-init="firstname='xu';count=2;price=5;names=['zhang','wang','li'];names2=[{name:'zhang',age:12},{name:'liyong',age:33}]">
+        <p>pls Enter your input:</p>
+        <p>key word：<input ng-model="firstname" type="text" /></p>
+        <p>your input：{{firstname}}</p>
+
+
+        <h3>价格计算器</h3>
+        <p>单价：<input ng-model="price" type="number" /></p>
+        <p>数量：<input ng-model="count" type="number" /></p>
+        <p>
+            总计：{{price*count}}
+        </p>
+        <h3>ng-repeat</h3>
+        <ul>
+            <li ng-repeat="x in names">
+
+                {{x}}
+            </li>
+        </ul>
+        <h3>ng-repeat  2</h3>
+        <ul>
+            <li ng-repeat="x in names2">
+
+                {{"姓名："+x.name+"-年龄:"+x.age}}
+            </li>
+        </ul>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl1">
+      <p>
+            <button ng-disabled="mySwitch">点击我</button>
+            <br />
+            {{mySwitch}}
+            <br />
+            <input type="checkbox" ng-model="mySwitch" />按钮
+            <br />
+        <p ng-show="true">我是可见的</p>
+        <p ng-show="false">我是不可见的</p>
+
+        <p ng-hide="true">隐藏的</p>
+        <p ng-hide="false">显示的</p>
+        <hr />
+        <h1>事件</h1>
+        <button ng-click="count=count+1">点击</button>
+        <p>{{count}}</p>
+        <br />
+       <input type="button" ng-click="toggle()" value="隐藏/显示" />
+        <!--<p ng-hide="myVar">-->
+<p ng-show="myVar">
+         
+            test 
+          <span>ddd</span>
+        </p>
+        <script type="text/javascript">
+            var app = angular.module("myApp", []);
+            app.controller("myCtrl1", function ($scope) {
+                $scope.mySwitch = true;
+                $scope.myVar = false;
+                $scope.toggle = function () {
+              
+                    $scope.myVar = !$scope.myVar;
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

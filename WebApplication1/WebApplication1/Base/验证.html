@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.user = "xx";
+            $scope.isNum = angular.isNumber($scope.user);
+            $scope.isString = angular.isString($scope.user);
+        })
+
+    </script>
+</head>
+<body>
+
+    <form ng-app="myApp" ng-controller="myCtrl" name="myForm" novalidate>
+        Email:<input type="email" name="address" ng-model="address" />
+        <span style="color:red" ng-show="myForm.address.$dirty&&myForm.address.$invalid">
+            <span ng-show="myForm.address.$error.email">Email有问题！</span>
+        </span>
+
+        <br />
+
+        <p>
+            User:<input type="text" name="user" ng-model="user" required />
+            <span style="color:red" ng-show="myForm.user.$dirty&&myForm.user.$invalid">
+                <span ng-show="myForm.user.$error.required">用户名是必须的</span>
+            </span>
+        </p>
+        <p>
+            <input type="button" ng-disabled="myForm.user.$dirty&&myForm.user.$invalid||myForm.address.$dirty&&myForm.address.$invalid" value="submit" />
+        </p>
+        {{user|uppercase}}
+        是否是数字:{{isNum}}<br />
+        是否是字符： {{isString}}
+    </form>
+
+</body>
+</html>

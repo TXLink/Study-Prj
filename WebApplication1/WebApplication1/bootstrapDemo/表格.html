@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>ui-Grid Example01</title>
+    <link href="uigrid/ui-grid.css" rel="stylesheet" />
+    <script src="../js/jquery.min.2.1.1.js"></script>
+    <script src="../js/angular1.5.5.js"></script>
+    <script src="uigrid/ui-grid.js?v=11"></script>
+    <script src="uigrid/app.js?v=d1d1"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- ui-grid export 导出-->
+    <!--<script src="uigrid/vfs_fonts.js"></script>
+    <script src="uigrid/pdfmake.js"></script>
+    <script src="uigrid/csv.js"></script>-->
+
+    <style type="text/css">
+        .ui-grid-pager-control input {
+        padding:0px;
+        height:23px;
+        
+        }
+
+    
+   .ui-grid,.ui-grid-row{
+        color:yellow;
+       mso-number-format:'\@';
+
+        }
+    </style>
+</head>
+<body ng-controller="MyCtrl">
+    <div ui-grid="gridOptions" style="text-align: center;" ui-grid-edit ui-grid-pagination
+         ui-grid-selection ui-grid-exporter ui-grid-resize-columns ui-grid-auto-resize>
+    </div>
+    <div class="paginator-container clear_float" style="padding: 10px 0px; display: none;">
+        <ul class="pagination float-r" style="margin:0px 0px 0px 30px;">
+            <li><a>&laquo;</a></li>
+            <li><a>&laquo;</a></li>
+            <li><a>10</a></li>
+            <li><a>&raquo;</a></li>
+            <li><a>&raquo;</a></li>
+        </ul>
+        <div class="page-filter float-r" style="line-height:34px;">
+            <span>每页显示</span>
+            <select ng-model="pageInfo.pageSize" ng-change="onSelectPageSize()" class="form-control page-filter-dropdown" ng-options="count for count in pageInfo.pageSizeList"></select>
+            <span>条信息</span>
+        </div>
+    </div>
+
+    <div style="width:100%; height: 100px">
+        <ol>
+            <li>名称：{{testRow.name}}</li>
+            <li>年龄：{{testRow.age}}</li>
+            <li>生日：{{testRow.birthday}}</li>
+        </ol>
+    </div>
+</body>
+</html>

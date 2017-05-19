@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../js/angular.min1.4.6.js"></script>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl1", function ($scope) {
+            $scope.num = 3;
+            $scope.price = 3;
+         
+        });
+        app.controller("myCtrl2", function ($scope) {
+            $scope.names = [{
+                name: '张三',
+                country: 'y中国'
+            },{
+                name: '张三',
+                country: 'x中国'
+            }, {
+                name: '李四',
+                country: 'b加拿大'
+            }, {
+                name: '王五',
+                country: 'a阿拉斯加'
+            }]
+        })
+
+        app.controller("myCtrl3", function ($scope) {
+
+            $scope.names = [{
+                name: 'XiaoZhang',
+                country: 'China'
+            },{
+                name: '张三',
+                country: 'y中国'
+            }, {
+                name: '张三',
+                country: 'x中国'
+            }, {
+                name: '李四',
+                country: 'b加拿大'
+            }, {
+                name: '王五',
+                country: 'a阿拉斯加'
+            }]
+
+        });
+
+    </script>
+</head>
+<body  ng-app="myApp">
+    <div ng-controller="myCtrl1">
+        数量：<input ng-model="num"  /> 单价：<input ng-model="price"  /> <br />
+        合计：{{(num*price)|currency}} 
+    </div>
+    <div ng-controller="myCtrl2">
+        <h1>Order By 过滤器</h1>
+        <ul>
+            <li ng-repeat="x in names|orderBy:'country'">{{ x.name +"-"+x.country}}</li>
+        </ul>
+
+    </div>
+    <div ng-controller="myCtrl3">
+        <p>输入过滤:</p>
+        <input ng-model="test" />
+        <ul>
+            <li ng-repeat="x in names|filter:test|orderBy:'country'">{{ (x.name|uppercase) +"-"+x.country}}</li>
+        </ul>
+    </div>
+
+</body>
+</html>
