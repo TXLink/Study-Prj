@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
+/*
+  构建无限递归树（返回无限递归的JSON字符串）
+*/
+
 namespace Tools
 {
    public class 构建无限递归树
     {
-
-
 
         public string 调用()
         {
