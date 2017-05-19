@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{5E0AA441-6F82-4FFF-8CAC-E678D42B9AC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{CD7C88FF-5A5F-403F-B7AF-8C1705CE1D60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp", "CSharp", "{8F725445-FE92-40D4-ADAE-F8A10169A772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{8FA4F0E7-DE08-4744-994C-DA58DC65AC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{84A14D5B-95D8-4E61-85C8-F3F6424F6CD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FA4F0E7-DE08-4744-994C-DA58DC65AC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA4F0E7-DE08-4744-994C-DA58DC65AC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA4F0E7-DE08-4744-994C-DA58DC65AC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA4F0E7-DE08-4744-994C-DA58DC65AC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84A14D5B-95D8-4E61-85C8-F3F6424F6CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84A14D5B-95D8-4E61-85C8-F3F6424F6CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84A14D5B-95D8-4E61-85C8-F3F6424F6CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84A14D5B-95D8-4E61-85C8-F3F6424F6CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F725445-FE92-40D4-ADAE-F8A10169A772} = {CD7C88FF-5A5F-403F-B7AF-8C1705CE1D60}
+		{8FA4F0E7-DE08-4744-994C-DA58DC65AC66} = {8F725445-FE92-40D4-ADAE-F8A10169A772}
+		{84A14D5B-95D8-4E61-85C8-F3F6424F6CD3} = {5E0AA441-6F82-4FFF-8CAC-E678D42B9AC3}
+	EndGlobalSection
+EndGlobal
